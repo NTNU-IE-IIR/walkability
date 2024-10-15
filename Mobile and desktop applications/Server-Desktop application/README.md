@@ -4,6 +4,7 @@
 
 - Install conda (https://docs.conda.io/en/latest/) and QGIS (https://www.qgis.org/en/site/).
 - Create a new conda environment with the following packages:
+  (Tip: create a file called **walkability.yml** and execute "*conda env create -f walkability.yml*")
 
 ```
 name: thesis
