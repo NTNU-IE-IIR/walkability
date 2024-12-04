@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livability APP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar with the form -->
+
+        <div class="sidebar">
+            <h1>Liveability App</h1>
+            <div class="form-container">
+                <form action="/heatmap" method="get">
+                    <label for="municipality">Choose a municipality:</label>
+                    <select name="municipality" id="municipality">
+                        <option value="alesund" {% if selected_municipality == 'alesund' %}selected{% endif %}>Ålesund</option>
+                        <option value="fjord" {% if selected_municipality == 'fjord' %}selected{% endif %}>Fjord</option>
+                        <option value="stranda" {% if selected_municipality == 'stranda' %}selected{% endif %}>Stranda</option>
+                    </select>
+            
+                    <h3>Select Indicators</h3>
+                    <!-- Container for scrolling indicators -->
+                    <div class="indicator-container">
+                        {% for indicator, tag in indicator_map.items() %}
+                            <div class="indicator-group">
+                                <input
+                                    type="checkbox"
+                                    id="indicator_{{ indicator }}"
+                                    name="indicators"
+                                    value="{{ indicator }}"
+                                    {% if indicator in selected_indicators %}checked{% endif %}
+                                />
+                                <label for="indicator_{{ indicator }}">{{ indicator.capitalize() }}</label>
+            
+                                <label for="radius_{{ indicator }}">Range (meters):</label>
+                                <input
+                                    type="range"
+                                    id="radius_{{ indicator }}"
+                                    name="radius_{{ indicator }}"
+                                    min="0"
+                                    max="1000"
+                                    step="10"
+                                    value="{{ selected_radii.get(indicator, 500) }}"
+                                />
+                                <span>{{ selected_radii.get(indicator, 500) }}m</span>
+            
+                                <label for="color_{{ indicator }}">Color:</label>
+                                <input
+                                    type="color"
+                                    id="color_{{ indicator }}"
+                                    name="color_{{ indicator }}"
+                                    value="{{ selected_colors.get(indicator, '#ff0000') }}"
+                                />
+                            </div>
+                        {% endfor %}
+                    </div> <!-- End of indicator-container -->
+            
+                    <!-- Update Map Button -->
+                    <button type="submit">Update Map</button>
+                </form>
+            </div>
+            
+            
+        </div>
+
+        <!-- Map Container -->
+        <div class="map-container">
+            <div id="map">
+                {{ map | safe }}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

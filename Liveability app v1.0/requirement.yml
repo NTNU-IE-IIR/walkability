@@ -1,0 +1,9 @@
+name: liveability-app
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - flask=2.2.5
+  - folium=0.14.0
+  - flask-caching=2.0.1
+  - requests=2.31.0
