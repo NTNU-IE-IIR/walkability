@@ -1,0 +1,4 @@
+To install livability app, download conda (https://docs.conda.io/en/latest/).
+Create an environment in conda:
+  conda env create -f requirement.yml
+  conda activate liveability-app
