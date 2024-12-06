@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import folium
 from folium.plugins import HeatMap
 import requests
@@ -84,10 +84,11 @@ def extract_coordinates(data):
             locations.append(centroid)
     return locations
 
+
 @app.route('/')
 def home():
-    return "Welcome to the Liveabiltiy App!"
 
+    return redirect(url_for('heatmap', indicators=['school'], municipality='alesund'))
 
 # Heatmap route
 @app.route('/heatmap', methods=['GET'])
@@ -150,4 +151,4 @@ def heatmap():
     )
 
 if __name__ == '__main__':
-    app.run(debug=True, host= '0.0.0.0', port=8000)
+    app.run(debug=True, host= '0.0.0.0', port= 8000)
