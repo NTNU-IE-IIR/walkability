@@ -1,92 +1,105 @@
-/* General styling */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-.container {
-    display: flex;
-    height: 100vh;
-}
+        /* General styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%; /* Ensure the body occupies the full height */
+            display: flex;
+            flex-direction: column;
+        }
 
-.form-container {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin: 10px 0;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-}
+        .container {
+            display: flex;
+            flex: 1;
+            height: 100%;
+        }
 
-.form-container h3 {
-    margin-top: 0;
-}
+        /* Sidebar styling */
+        .sidebar {
+            width: 25%;
+            min-width: 250px;
+            max-width: 400px;
+            background: #f4f4f4;
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+        }
 
-.indicator-container {
-    max-height: 500px;  /* Set the maximum height for the indicator container */
-    overflow-y: auto;   /* Enable vertical scrolling */
-    margin-bottom: 20px;
-    padding-right: 10px;  /* Optional: to give space for the scrollbar */
-}
+        .sidebar h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
 
-.indicator-group {
-    margin-bottom: 15px;
-}
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
 
-button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
+        .indicator-container {
+            display: flex;
+            flex-wrap: wrap; /* Adjusts indicators to wrap */
+            gap: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
 
-button:hover {
-    background-color: #45a049;
-}
-/* Sidebar styling */
-.sidebar {
-    width: 20%; /* Sidebar occupies 25% of the screen */
-    padding: 20px;
-    background-color: #f9f9f9;
-    overflow-y: auto;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
+        .indicator-group {
+            flex: 1 1 100%; /* Full width by default, adjusts in larger screens */
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
 
-/* Map container styling */
-.map-container {
-    flex: 1; /* Map takes the remaining space */
-    height: 100%;
-    position: relative;
-}
+        label {
+            margin-top: 5px;
+            font-weight: bold;
+        }
 
-/* Styling for form elements */
-h1 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-h3 {
-    font-size: 1.2em;
-    margin-top: 10px;
-}
-label {
-    font-weight: bold;
-    margin-right: 8px;
-}
-.indicator-group {
-    margin-bottom: 10px;
-}
-input[type="range"] {
-    width: 80%;
-}
-button {
-    margin-top: 20px;
-    padding: 10px 15px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #0056b3;
-}
+        input[type="range"] {
+            width: 100%;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Map container styling */
+        .map-container {
+            flex-grow: 1; /* Makes the map take the remaining space */
+            height: 100%; /* Ensures no white space below */
+        }
+
+        #map {
+            width: 100%;
+            height: 100%; /* Ensures the map fills the container */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 10px;
+                box-shadow: none;
+            }
+
+            .indicator-container {
+                display: block; /* Make the indicators stack */
+            }
+        }
