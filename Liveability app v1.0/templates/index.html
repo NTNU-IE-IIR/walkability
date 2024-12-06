@@ -8,10 +8,9 @@
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar with the form -->
-
+        <!-- Sidebar -->
         <div class="sidebar">
-            <h1>Liveability App</h1>
+            <h1>Livability App</h1>
             <div class="form-container">
                 <form action="/heatmap" method="get">
                     <label for="municipality">Choose a municipality:</label>
@@ -20,9 +19,8 @@
                         <option value="fjord" {% if selected_municipality == 'fjord' %}selected{% endif %}>Fjord</option>
                         <option value="stranda" {% if selected_municipality == 'stranda' %}selected{% endif %}>Stranda</option>
                     </select>
-            
+
                     <h3>Select Indicators</h3>
-                    <!-- Container for scrolling indicators -->
                     <div class="indicator-container">
                         {% for indicator, tag in indicator_map.items() %}
                             <div class="indicator-group">
@@ -34,7 +32,7 @@
                                     {% if indicator in selected_indicators %}checked{% endif %}
                                 />
                                 <label for="indicator_{{ indicator }}">{{ indicator.capitalize() }}</label>
-            
+
                                 <label for="radius_{{ indicator }}">Range (meters):</label>
                                 <input
                                     type="range"
@@ -46,7 +44,7 @@
                                     value="{{ selected_radii.get(indicator, 500) }}"
                                 />
                                 <span>{{ selected_radii.get(indicator, 500) }}m</span>
-            
+
                                 <label for="color_{{ indicator }}">Color:</label>
                                 <input
                                     type="color"
@@ -56,17 +54,13 @@
                                 />
                             </div>
                         {% endfor %}
-                    </div> <!-- End of indicator-container -->
-            
-                    <!-- Update Map Button -->
+                    </div>
                     <button type="submit">Update Map</button>
                 </form>
             </div>
-            
-            
         </div>
 
-        <!-- Map Container -->
+        <!-- Map -->
         <div class="map-container">
             <div id="map">
                 {{ map | safe }}
