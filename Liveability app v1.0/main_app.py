@@ -84,6 +84,11 @@ def extract_coordinates(data):
             locations.append(centroid)
     return locations
 
+@app.route('/')
+def home():
+    return "Welcome to the Liveabiltiy App!"
+
+
 # Heatmap route
 @app.route('/heatmap', methods=['GET'])
 def heatmap():
@@ -145,4 +150,4 @@ def heatmap():
     )
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host= 0.0.0.0, port=8000)
